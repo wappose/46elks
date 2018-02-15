@@ -1,33 +1,26 @@
 Use this repo as a skeleton for your new channel, once you're done please submit a Pull Request on [this repo](https://github.com/laravel-notification-channels/new-channels) with all the files.
 
-Here's the latest documentation on Laravel 5.3 Notifications System: 
+Here's the latest documentation on Laravel 5.* Notifications System:
 
 https://laravel.com/docs/master/notifications
 
 # A Boilerplate repo for contributions
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/46-elks.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/46-elks)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/:package_name/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/:package_name)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/46-elks/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/46-elks)
 [![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/:package_name)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/:package_name/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/:package_name/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/46-elks.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/46-elks)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/46-elks/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/46-elks/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/46-elks.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/46-elks)
 
-This package makes it easy to send notifications using [:service_name](link to service) with Laravel 5.3.
-
-**Note:** Replace ```:channel_namespace``` ```:service_name``` ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:package_name``` ```:package_description``` ```:style_ci_id``` ```:sensio_labs_id``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [composer.json](composer.json) and other files, then delete this line.
-**Tip:** Use "Find in Path/Files" in your code editor to find these keywords within the package directory and replace all occurences with your specified term.
-
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
-
-
+This package makes it easy to send notifications using [46Elks](https://46elks.com/) with Laravel 5.x.
 
 ## Contents
 
 - [Installation](#installation)
-	- [Setting up the :service_name service](#setting-up-the-:service_name-service)
+	- [Setting up the 46Elks service](#setting-up-the-46Elks-service)
 - [Usage](#usage)
 	- [Available Message methods](#available-message-methods)
 - [Changelog](#changelog)
@@ -40,19 +33,43 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+composer require laravel-notification-channels/46-elks
 
-### Setting up the :service_name service
+### Setting up the 46Elks service
 
-Optionally include a few steps how users can set up the service.
+1. Register the NotificationChannels\FortysixElks\FortysixElksServiceProvider::class in your config/app.php
+2. Add this in your config/app.php
+```php
+'fortysixelks' => [
+    	'username' => env('46ELKS_USERNAME'),
+    	'password' => env('46ELKS_PASSWORD'),
+    	'sender' => env('46ELKS_SENDER'),
+    ],
+```
+3. Configure parameters in you .env file.
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+1. Create a notification.
+2. Configure it to send via FortysixElksChannel::class
+3. Implement toFortysixElks function
+```php
+public function toFortysixElks($notifiable)
+{
+    return (new FortysixElksMessage)
+                ->body("this is a message 123455")
+                ->receiver("+46123123123")
+                ->isFlash(true)
+                ->from("<MySenderName>");
+}
+```
 
 ### Available Message methods
 
-A list of all available options
+* `body(string)` : Sets the sms message
+* `receiver(string)` : Sets the receiver phone
+* `isFlash(boolean)` : Enable flash messages
+* `from(string)` : Ovverride sender name per message here
 
 ## Changelog
 
@@ -66,7 +83,7 @@ $ composer test
 
 ## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
+If you discover any security related issues, please email joos@wappo.se instead of using the issue tracker.
 
 ## Contributing
 
@@ -74,7 +91,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Johan](https://github.com/kjostling)
 - [All Contributors](../../contributors)
 
 ## License

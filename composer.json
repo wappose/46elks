@@ -1,20 +1,21 @@
 {
-    "name": "laravel-notification-channels/:package_name",
-    "description": ":package_description",
-    "homepage": "https://github.com/laravel-notification-channels/:package_name",
+    "name": "laravel-notification-channels/46-elks",
+    "description": "46 elks notification channel for Laravel",
+    "homepage": "https://github.com/laravel-notification-channels/46-elks",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Johan",
+            "email": "joos@wappo.se",
+            "homepage": "http://www.wappo.se",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=5.6.4",
-        "illuminate/notifications": "^5.3",
-        "illuminate/support": "^5.1|^5.2|^5.3"
+        "php": ">=7.0.0",
+        "guzzlehttp/guzzle": "~6.0",
+        "illuminate/notifications": "5.*",
+        "illuminate/support": "5.*"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
@@ -22,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\": "src"
+            "NotificationChannels\\FortysixElks\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\Test\\": "tests"
+            "NotificationChannels\\FortysixElks\\Test\\": "tests"
         }
     },
     "scripts": {
